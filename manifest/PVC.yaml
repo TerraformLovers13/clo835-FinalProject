@@ -1,0 +1,29 @@
+#Storage class deployment
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv
+spec:
+  capacity:
+    storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: fast
+  awsElasticBlockStore:
+    volumeID: vol-0610ebf5178675a4e
+#Persistent volume claim deployment
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: web-data
+  annotations:
+    volume.beta.kubernetes.io/storage-class: standard
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
