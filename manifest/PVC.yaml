@@ -1,10 +1,11 @@
+#Storage class deployment
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv
 spec:
   capacity:
-    storage: 1Gi
+    storage: 2Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
@@ -12,7 +13,7 @@ spec:
   storageClassName: fast
   awsElasticBlockStore:
     volumeID: vol-0610ebf5178675a4e
-
+#Persistent volume claim deployment
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -25,4 +26,4 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 2Gi
