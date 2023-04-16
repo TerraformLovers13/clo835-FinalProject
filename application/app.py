@@ -40,14 +40,14 @@ def download_file(fileName, bucket_name):
     #      aws_session_token = session_token
     #      )
     s3 = boto3.resource('s3',
-         aws_access_key_id= 'ASIAYRPULG7I45DYOX3B',
-         aws_secret_access_key= 'ovggdhJVxPGjQlTkSKiYLsLNMKWoAPGfFCLy2nYU',
-         aws_session_token = 'FwoGZXIvYXdzEOf//////////wEaDBMS9QZwad+2q3EKaiLJAVDgAJeAOZl9DS3V/vcd8wjMKk03DLIfEYjBAgMYDDQpcX6pRqPBK+fDNBpcDg2NXC+QU3c9mhAs8DlagMJtByNKjNcnq3S+rEWyYgfuNJZ1fv58L7IoJLg70i7txcvon8H/EQzkrU3ZWjunm9wbokFg0sijj/rlsiphOmKYBtQmeAR5d8pSt08Dhg30qeTOlmpfCbOxLFCQzmFTTAgLGIIUeRoKeAD8qy9v0ltNSoviwXJhMvA/EwdW3282ZA164v9dXiNwRPJxUyjD49qhBjIt0IRUzHnPJjCADHT/0EX0Xbhf7HDpiqBG2/ZBsoy/ODjfHVLityMoy5coPTTK'
+         aws_access_key_id= 'ASIAYRPULG7IS6F3S62K',
+         aws_secret_access_key= 'NaWAPcKb9mzD3WQpNfS5+UnM1K906vPPpcDrwycE',
+         aws_session_token = 'FwoGZXIvYXdzEDkaDOkevXBrNJR32VlDxyLJAUn/I5z5kJPypQw61LTBfZJjJsM6CwEmVIPytmce7o9B+SIXRUOovDVUeCB94gh7L3Fi+kkiUsbZZZ2N99XLFsWHogV9KRT8xY3IuaUrCxFJ4U1qZNQ/WUl9NXACHeGv27Plr9d0yyr90GSU3T7w8+5UopU8UjQ+fUhduK+48ziwHGIqrpY/Ga5dVtz5HnpHkGM0w3OgQN10Cn0gYagrfO0h5sQR4aToV9h4FlmnC0MhUibG0sP+eHxKtFG+5a/GnGnJ9K7rteCnbij56+yhBjItAd6ZlYIP5wvknHjOs8KRiXSRZIaW9ytSlobw8msHswrqpS830ZeoroKOrJCL'
          )
     
     # s3.download_file('bucketURL', 'image.jpg', 'r/img/image.jpg')
     print({bucket_name})
-    return s3.Bucket('dockerlovers').download_file('image.jpg','/app/templates/image.jpg')
+    return s3.Bucket('dockerlovers').download_file('image.jpg','/app/templates/static/image.jpg')
     # s3.Bucket(bucketURL).download_file(file_name, output)
 
     
