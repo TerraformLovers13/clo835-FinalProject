@@ -8,7 +8,6 @@ import argparse
 
 
 app = Flask(__name__)
-
 DBHOST = os.environ.get("DBHOST") or "localhost"
 DBUSER = os.environ.get("DBUSER") or "root"
 DBPWD = os.environ.get("DBPWD") or "passwors"
@@ -16,21 +15,22 @@ DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "lime"
 DBPORT = 3306 or int(os.environ.get("DBPORT")) 
 bucket_name= os.environ.get("background") or "kuberneteslovers"
-# # key_id= os.environ.get("key_id")
-# # access_key= os.environ.get("access_key")
-# session_token=os.environ.get("session_token")
+key_id= os.environ.get("key_id")
+access_key= os.environ.get("access_key")
+session_token=os.environ.get("session_token")
 groupname=os.environ.get("group-name") or "group 13"
 fileName= "image.jpg"
 
 #Download the Image from s3 bucket
 def download_file(fileName, bucket_name):
     
-    directory = "/app/templates"
+    directory = "static"
     if os.path.exists(directory) and os.path.isdir(directory):
         print("Directory exists")
     else:
         os.makedirs(directory)
-    
+    imagePath = os.path.join(directory, "background.png")
+    print(imagePath)
     """
     Function to download a given file from an S3 bucket
     """
@@ -40,14 +40,15 @@ def download_file(fileName, bucket_name):
     #      aws_session_token = session_token
     #      )
     s3 = boto3.resource('s3',
-         aws_access_key_id= 'ASIAYRPULG7I45DYOX3B',
-         aws_secret_access_key= 'ovggdhJVxPGjQlTkSKiYLsLNMKWoAPGfFCLy2nYU',
-         aws_session_token = 'FwoGZXIvYXdzEOf//////////wEaDBMS9QZwad+2q3EKaiLJAVDgAJeAOZl9DS3V/vcd8wjMKk03DLIfEYjBAgMYDDQpcX6pRqPBK+fDNBpcDg2NXC+QU3c9mhAs8DlagMJtByNKjNcnq3S+rEWyYgfuNJZ1fv58L7IoJLg70i7txcvon8H/EQzkrU3ZWjunm9wbokFg0sijj/rlsiphOmKYBtQmeAR5d8pSt08Dhg30qeTOlmpfCbOxLFCQzmFTTAgLGIIUeRoKeAD8qy9v0ltNSoviwXJhMvA/EwdW3282ZA164v9dXiNwRPJxUyjD49qhBjIt0IRUzHnPJjCADHT/0EX0Xbhf7HDpiqBG2/ZBsoy/ODjfHVLityMoy5coPTTK'
+         aws_access_key_id= 'key_id',
+         aws_secret_access_key= 'access_key',
+         aws_session_token = 'session_token'
          )
     
     # s3.download_file('bucketURL', 'image.jpg', 'r/img/image.jpg')
     print({bucket_name})
-    return s3.Bucket('dockerlovers').download_file('image.jpg','/app/templates/image.jpg')
+    s3.Bucket('kuberneteslovers').download_file('image.jpg',imagePath)
+    return imagePath
     # s3.Bucket(bucketURL).download_file(file_name, output)
 
     
@@ -151,7 +152,8 @@ def FetchData():
                            lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR])
 
 if __name__ == '__main__':
-    download_file(fileName, bucket_name)
+    image=download_file(fileName, bucket_name)
+    print(image)
     # Check for Command Line Parameters for color
     
     parser = argparse.ArgumentParser()

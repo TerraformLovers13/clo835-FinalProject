@@ -2,20 +2,21 @@
 <html>
   <head>
     <title>Hello from Flask</title>
-    <style>
-      body {
-        background-image: url('/img/image.jpg');
-        background-size: cover;
-      }
-      div {
-        color: #e4e4e4;
-        text-align: center;
-        height: 90px;
-        vertical-align: middle;
-      }
-    </style>
+    /*<style>*/
+    /*  body {*/
+    /*    background-image: url('/img/image.jpg');*/
+    /*    background-size: cover;*/
+    /*  }*/
+    /*  div {*/
+    /*    color: #e4e4e4;*/
+    /*    text-align: center;*/
+    /*    height: 90px;*/
+    /*    vertical-align: middle;*/
+    /*  }*/
+    /*</style>*/
   </head>
-  <body>
+  		<body style="background-image: url(static/background.png); background-size: cover; background-repeat: no-repeat;">
+
     <div>
       {% if name %}
         <h1>Hello from {{ name }}!</h1>

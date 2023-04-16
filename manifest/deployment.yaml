@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: 587312347089.dkr.ecr.us-east-1.amazonaws.com/test
+        image: 587312347089.dkr.ecr.us-east-1.amazonaws.com/webapp:latest
         env:
         - name: DBUSER
           valueFrom:
