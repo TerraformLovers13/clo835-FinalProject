@@ -1,18 +1,28 @@
-#Storage class deployment
-apiVersion: v1
-kind: PersistentVolume
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
 metadata:
-  name: pv
-spec:
-  capacity:
-    storage: 2Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Recycle
-  storageClassName: fast
-  awsElasticBlockStore:
-    volumeID: vol-0610ebf5178675a4e
+  name: standard
+provisioner: kubernetes.io/aws-ebs
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  type: gp2
+  fsType: ext4
+---
+#Storage class deployment
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: pv
+# spec:
+#   capacity:
+#     storage: 2Gi
+#   volumeMode: Filesystem
+#   accessModes:
+#     - ReadWriteOnce
+#   persistentVolumeReclaimPolicy: Recycle
+#   storageClassName: fast
+#   awsElasticBlockStore:
+#     volumeID: vol-0610ebf5178675a4e
 #Persistent volume claim deployment
 ---
 apiVersion: v1
@@ -20,7 +30,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: web-data
   annotations:
-    volume.beta.kubernetes.io/storage-class: standard
+    storage-class: gp2
 spec:
   accessModes:
   - ReadWriteOnce
